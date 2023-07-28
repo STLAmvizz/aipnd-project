@@ -101,6 +101,3 @@ ENV/
 .mypy_cache/
 
 .github/**
-
-# MFV .gitignore adds
-assets/flowers_MFV
