@@ -35,7 +35,7 @@ python train.py assets/flowers_MFV r 0.001 5 y models/RESNET50_BestModel_080123.
 
 "predict.py" MUST be run after "train.py"
 
-predict.py: python predict.py <prediction_image_path> <checkpoint_dir> <model_choice> <learning_rate> <topk> <file>
+predict.py: python predict.py <prediction_image_path> <checkpoint_dir> <model_choice> <learning_rate> <topk> <file> <gpu>
 
     <prediction_image_path> : The path to the image that you want to predict "assets/flowers_MFV/test/1/image_06743.jpg"
     <checkpoint_dir> : The path to the newly created checkpoint that train.py output "checkpoint/<model_choice>_Checkpoint_date.pth"
@@ -43,10 +43,11 @@ predict.py: python predict.py <prediction_image_path> <checkpoint_dir> <model_ch
     <learning_rate> : The rate at which gradient descent moves for backpropogation. The Adam optimizer is used for training either of these models so a low number like "0.001" is recommended. Neds to be the same as what you chose for "train.py"
     <topk> : The top k number of classes you would like to output for the prediction ex: "5"
     <file> : The file that maps the classes to their outputs ex: "cat_to_name.json"
+    <gpu> : "y" means that if the GPU is available, you would like to utilize it. Anything other than "y" means that training will happen on the cpu. The default is "y"
 
 So here is an example of predicting using some of the outputs that were created by "train.py" above:
 
-python predict.py assets/flowers_MFV/test/1/image_06743.jpg checkpoints/RESNET50_Checkpoint_080123.pth r 0.001 4 cat_to_name.json
+python predict.py assets/flowers_MFV/test/1/image_06743.jpg checkpoints/RESNET50_Checkpoint_080123.pth r 0.001 4 cat_to_name.json y
 
 ![predict.py Example Output](screenshots/predict_screenshot_output.jpg?raw=true "predict.py Example Output")
 
