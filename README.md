@@ -19,13 +19,14 @@ Notice that "models" and "checkpoints" do not contain anything on Github. In ord
 "train.py" MUST be run prior to "predict.py"
 
 train.py: python train.py <data_dir> <model_choice> <learning_rate> <training_epochs> <gpu> <model_dir> <checkpoint_dir>
-    <data_dir> : The directory in which your data is stored "assets/flowers_MFV"
-    <model_choice> : "v" means that you would like to train a VGG16 model. "r" means that you would like to train a Resnet50 model.
-    <learning_rate> : The rate at which gradient descent moves for backpropogation. The Adam optimizer is used for training either of these models so a low number like "0.001" is recommended
-    <training_epochs> : The number of iterations through the training data you would like to perform "5"
-    <gpu> : "y" means that if the GPU is available, you would like to utilize it. Anything other than "y" means that training will happen on the cpu.
-    <model_dir> : The location for where the trainied model will be stored "models/<model_name>_date.pth" would be a good example of what to put here
-    <checkpoint_dir> : The location for where the checkpoint for the model will be stored "checkpoints/<model_name>_Checkpoint_data.pth" would be a good example of what to put here.
+    
+1. <data_dir> : The directory in which your data is stored "assets/flowers_MFV"
+2. <model_choice> : "v" means that you would like to train a VGG16 model. "r" means that you would like to train a Resnet50 model.
+3. <learning_rate> : The rate at which gradient descent moves for backpropogation. The Adam optimizer is used for training either of these models so a low number like "0.001" is recommended
+4. <training_epochs> : The number of iterations through the training data you would like to perform "5"
+5. <gpu> : "y" means that if the GPU is available, you would like to utilize it. Anything other than "y" means that training will happen on the cpu.
+6. <model_dir> : The location for where the trainied model will be stored "models/<model_name>_date.pth" would be a good example of what to put here
+7. <checkpoint_dir> : The location for where the checkpoint for the model will be stored "checkpoints/<model_name>_Checkpoint_data.pth" would be a good example of what to put here.
 
 So here is an example of training, validating, and saving a checkpoint of a resnet50 model with a learning rate of 0.001 on 5 epochs utilizing the gpu:
 
@@ -37,13 +38,13 @@ python train.py assets/flowers_MFV r 0.001 5 y models/RESNET50_BestModel_080123.
 
 predict.py: python predict.py <prediction_image_path> <checkpoint_dir> <model_choice> <learning_rate> <topk> <file> <gpu>
 
-    <prediction_image_path> : The path to the image that you want to predict "assets/flowers_MFV/test/1/image_06743.jpg"
-    <checkpoint_dir> : The path to the newly created checkpoint that train.py output "checkpoint/<model_choice>_Checkpoint_date.pth"
-    <model_choice> : "v" means that you would like to train a VGG16 model. "r" means that you would like to train a Resnet50 model. Needs to be the same as what you chose for "train.py"
-    <learning_rate> : The rate at which gradient descent moves for backpropogation. The Adam optimizer is used for training either of these models so a low number like "0.001" is recommended. Neds to be the same as what you chose for "train.py"
-    <topk> : The top k number of classes you would like to output for the prediction ex: "5"
-    <file> : The file that maps the classes to their outputs ex: "cat_to_name.json"
-    <gpu> : "y" means that if the GPU is available, you would like to utilize it. Anything other than "y" means that training will happen on the cpu. The default is "y"
+1. <prediction_image_path> : The path to the image that you want to predict "assets/flowers_MFV/test/1/image_06743.jpg"
+2. <checkpoint_dir> : The path to the newly created checkpoint that train.py output "checkpoint/<model_choice>_Checkpoint_date.pth"
+3. <model_choice> : "v" means that you would like to train a VGG16 model. "r" means that you would like to train a Resnet50 model. Needs to be the same as what you chose for "train.py"
+4. <learning_rate> : The rate at which gradient descent moves for backpropogation. The Adam optimizer is used for training either of these models so a low number like "0.001" is recommended. Neds to be the same as what you chose for "train.py"
+5. <topk> : The top k number of classes you would like to output for the prediction ex: "5"
+6. <file> : The file that maps the classes to their outputs ex: "cat_to_name.json"
+7. <gpu> : "y" means that if the GPU is available, you would like to utilize it. Anything other than "y" means that training will happen on the cpu. The default is "y"
 
 So here is an example of predicting using some of the outputs that were created by "train.py" above:
 
