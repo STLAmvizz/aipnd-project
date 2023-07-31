@@ -143,14 +143,17 @@ def process_image(image):
 
     return imNp
 
-def predict(image_path, model, class_to_idx, topk=5):
+def predict(image_path, model, class_to_idx, topk=5, gpu='y'):
     ''' Predict the class (or classes) of an image using a trained deep learning model.
     '''
     # Open the image via the path and process the image per our previous function
     image = Image.open(image_path)
     image = process_image(image)
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    if gpu == 'y':
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    else:
+        device = 'cpu'
 
     # imTen = torch.from_numpy(image)
     imTen = torch.tensor(image).float()
@@ -195,7 +198,7 @@ def predict(image_path, model, class_to_idx, topk=5):
 
     return probs, classes
 
-def final_output(image_path, model, class_to_idx, topk, file):
+def final_output(image_path, model, class_to_idx, topk, file, gpu):
 
     '''
         :image_path - this is the path of the image you want to check
@@ -207,7 +210,7 @@ def final_output(image_path, model, class_to_idx, topk, file):
     # Getting the picture of the image that you are investigating
     image = Image.open(image_path)
 
-    probs, classes = predict(image_path, model, class_to_idx, topk)
+    probs, classes = predict(image_path, model, class_to_idx, topk, gpu)
 
     cat_to_name = label_mapping(file)
 

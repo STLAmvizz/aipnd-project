@@ -28,6 +28,7 @@ if __name__ == "__main__":
     parser.add_argument('learning_rate', help="learning rate that was used in train.py")
     parser.add_argument('topk', help="number of classes to show")
     parser.add_argument('file', help="cat_to_name.json")
+    parser.add_argument('gpu', help="y")
     args = parser.parse_args()
     ########################################################################################################################
 
@@ -111,6 +112,7 @@ if __name__ == "__main__":
     ########################################################################################################################
     topk = int(args.topk)
     file = args.file
-    dict = helper.final_output(args.prediction_image_path, model_vgg16, class_to_idx, topk, file)
+    gpu = args.gpu
+    dict = helper.final_output(args.prediction_image_path, model_vgg16, class_to_idx, topk, file, gpu)
     print(dict)
     ########################################################################################################################
