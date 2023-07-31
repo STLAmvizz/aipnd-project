@@ -31,7 +31,7 @@ So here is an example of training, validating, and saving a checkpoint of a resn
 
 python train.py assets/flowers_MFV r 0.001 5 y models/RESNET50_BestModel_080123.pth checkpoints/RESNET50_Checkpoint_080123.pth
 
-![train.py Example Output](screenshots/train_screenshot_output.jpg?raw=true "train.py Example Output")
+![train.py Example Output](/screenshots/train_screenshot_output.png?raw=true "train.py Example Output")
 
 "predict.py" MUST be run after "train.py"
 
@@ -49,6 +49,6 @@ So here is an example of predicting using some of the outputs that were created 
 
 python predict.py assets/flowers_MFV/test/1/image_06743.jpg checkpoints/RESNET50_Checkpoint_080123.pth r 0.001 4 cat_to_name.json y
 
-![predict.py Example Output](screenshots/predict_screenshot_output.jpg?raw=true "predict.py Example Output")
+![predict.py Example Output](/screenshots/predict_screenshot_output.png?raw=true "predict.py Example Output")
 
-![prediction.png Example Output](screenshots/prediction.jpg?raw=true "prediction.png Example Output")
+![prediction.png Example Output](/prediction.png?raw=true "prediction.png Example Output")
