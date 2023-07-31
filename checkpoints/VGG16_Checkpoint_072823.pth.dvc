@@ -1,0 +1,5 @@
+outs:
+- md5: de319fd8d1b13cc2b9dfb890d7996456
+  size: 1399201572
+  hash: md5
+  path: VGG16_Checkpoint_072823.pth
