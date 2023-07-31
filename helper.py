@@ -68,7 +68,7 @@ def transform_normalize_load_batch(data_path, batch_size=64):
 
     return (dataloaders_train, dataloaders_valid, dataloaders_test, image_datasets_train)
 
-def label_mapping():
+def label_mapping(file):
     '''
         :No inputs
 
@@ -78,7 +78,7 @@ def label_mapping():
         :return - cat_to_name (json file)
     '''
 
-    with open('cat_to_name.json', 'r') as f:
+    with open(file, 'r') as f:
         cat_to_name = json.load(f)
 
     return cat_to_name
@@ -195,7 +195,7 @@ def predict(image_path, model, class_to_idx, topk=5):
 
     return probs, classes
 
-def final_output(image_path, model, class_to_idx):
+def final_output(image_path, model, class_to_idx, topk, file):
 
     '''
         :image_path - this is the path of the image you want to check
@@ -207,9 +207,9 @@ def final_output(image_path, model, class_to_idx):
     # Getting the picture of the image that you are investigating
     image = Image.open(image_path)
 
-    probs, classes = predict(image_path, model, class_to_idx)
+    probs, classes = predict(image_path, model, class_to_idx, topk)
 
-    cat_to_name = label_mapping()
+    cat_to_name = label_mapping(file)
 
     # matplotlib plays nicer with numpy arrays
     probs = np.array(probs)
