@@ -28,6 +28,26 @@ train.py: python train.py <data_dir> <model_choice> <learning_rate> <training_ep
     <checkpoint_dir> : The location for where the checkpoint for the model will be stored "checkpoints/<model_name>_Checkpoint_data.pth" would be a good example of what to put here.
 
 So here is an example of training, validating, and saving a checkpoint of a resnet50 model with a learning rate of 0.001 on 5 epochs utilizing the gpu:
+
 python train.py assets/flowers_MFV r 0.001 5 y models/RESNET50_BestModel_080123.pth checkpoints/RESNET50_Checkpoint_080123.pth
 
 ![train.py Example Output](screenshots/train_screenshot_output.jpg?raw=true "train.py Example Output")
+
+"predict.py" MUST be run after "train.py"
+
+predict.py: python predict.py <prediction_image_path> <checkpoint_dir> <model_choice> <learning_rate> <topk> <file>
+
+    <prediction_image_path> : The path to the image that you want to predict "assets/flowers_MFV/test/1/image_06743.jpg"
+    <checkpoint_dir> : The path to the newly created checkpoint that train.py output "checkpoint/<model_choice>_Checkpoint_date.pth"
+    <model_choice> : "v" means that you would like to train a VGG16 model. "r" means that you would like to train a Resnet50 model. Needs to be the same as what you chose for "train.py"
+    <learning_rate> : The rate at which gradient descent moves for backpropogation. The Adam optimizer is used for training either of these models so a low number like "0.001" is recommended. Neds to be the same as what you chose for "train.py"
+    <topk> : The top k number of classes you would like to output for the prediction ex: "5"
+    <file> : The file that maps the classes to their outputs ex: "cat_to_name.json"
+
+So here is an example of predicting using some of the outputs that were created by "train.py" above:
+
+python predict.py assets/flowers_MFV/test/1/image_06743.jpg checkpoints/RESNET50_Checkpoint_080123.pth r 0.001 4 cat_to_name.json
+
+![predict.py Example Output](screenshots/predict_screenshot_output.jpg?raw=true "predict.py Example Output")
+
+![prediction.png Example Output](screenshots/prediction.jpg?raw=true "prediction.png Example Output")
